@@ -1,0 +1,57 @@
+server:
+  port: "3000"
+redis:
+  host: "localhost"
+  port: "6379"
+  password: ""
+  db: 0
+  page_cache_db: 1
+  local_data_db: 2
+  article_db: 3
+page_cache:
+  ttl_seconds: 3600
+  enabled: true
+site:
+  title: "My Awesome GoFibre Site"
+  keywords: "go, fibre, web, awesome, project"
+  description: "This is a description of my awesome GoFibre project."
+access_control:
+  enabled: true
+  preview_param: "preview_gofibre" # Parameter to bypass checks, e.g., /?preview_gofibre=1
+  blacklist_mode:
+    enabled: true
+    ips:
+      - "^192\\.168\\.1\\.100$" # Example: Exact IP
+      - "^10\\.0\\.0\\..*$"    # Example: IP range (regex)
+    page: "config/blacklist.html" # Path to HTML page for blacklisted users
+  spider_mode:
+    enabled: true
+    allowed_spiders: # Keywords in User-Agent (case-insensitive)
+      - "Googlebot"
+      - "Bingbot"
+      - "Baiduspider"
+      - "YandexBot"
+      - "Sogou" # Sogou spider
+      - "360Spider" # Qihoo 360 spider
+    verified_ips: # Regex for IPs of verified spiders (use actual spider IP ranges)
+      - "^66\\.249\\.(64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95)\\..*$" # Googlebot example range
+      - "^157\\.55\\.39\\..*$" # Bingbot example range
+      - "^180\\.76\\.15\\..*$" # Baiduspider example range
+    verify_by_hostname: true # Perform reverse DNS lookup for IPs not in verified_ips
+    default_pc_page: "config/pc.html" # Page to show to unverified PC spiders/bots
+    default_mob_page: "config/mob.html" # Page to show to unverified Mobile spiders/bots
+    mobile_keywords: # Case-insensitive keywords in User-Agent to detect mobile devices
+      - "mobile"
+      - "android"
+      - "iphone"
+      - "ipad"
+      - "ipod"
+      - "windows phone"
+      - "iemobile"
+      - "opera mini"
+      - "blackberry"
+# integrity_checks: # Optional
+#   config_md5: "md5_hash_of_config.php_equivalent"
+#   tpl_md5: "md5_hash_of_tpl_config_equivalent"
+# constants: # Optional
+#   SITE_ID: "your_site_id"
